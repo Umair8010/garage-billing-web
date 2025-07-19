@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Garage Billing Web</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background: #f2f2f2; }
+    .card { max-width: 700px; margin: 20px auto; }
+    .form-control { margin-bottom: 10px; }
+    .header { background: #007bff; color: white; padding: 10px; border-radius: 8px 8px 0 0; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="header">
+      <h3 class="text-center">Hashu Motor Garage - Bill Generator</h3>
+    </div>
+    <div class="card-body">
+      <form method="POST">
+        <input type="text" name="customer_name" class="form-control" placeholder="Customer Name" required>
+        <input type="text" name="customer_phone" class="form-control" placeholder="Customer Mobile Number" required>
+
+        <div id="services">
+          <div class="row">
+            <div class="col"><input type="text" name="service[]" class="form-control" placeholder="Service Name" required></div>
+            <div class="col"><input type="number" name="amount[]" class="form-control" placeholder="Price ₹" step="0.01" required></div>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-secondary mt-2" onclick="addService()">+ Add Service</button>
+        <button type="submit" class="btn btn-primary mt-2 float-end">Generate Bill</button>
+      </form>
+    </div>
+  </div>
+
+<script>
+function addService() {
+  let div = document.createElement('div');
+  div.className = 'row';
+  div.innerHTML = `
+    <div class="col"><input type="text" name="service[]" class="form-control" placeholder="Service Name" required></div>
+    <div class="col"><input type="number" name="amount[]" class="form-control" placeholder="Price ₹" step="0.01" required></div>
+  `;
+  document.getElementById('services').appendChild(div);
+}
+</script>
+</body>
+</html>
